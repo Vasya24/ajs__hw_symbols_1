@@ -1,15 +1,38 @@
-import Bowman from './bowman';
-import Swordsman from './swordsman';
-import Magician from './magician';
-import Team from './team';
+import Team from './team'
 
-const fellowship = new Team();
-const pack = fellowship.members;
-let aragorn = new Swordsman('Арагорн'),
-legolas = new Bowman('Леголас'),
-gandalf = new Magician('Гэндальф');
-pack.add(gandalf);
-pack.add(aragorn);
-pack.add(legolas)
+const bow = {
+    name: 'Лучник',
+    type: 'Bowman',
+    health: 50,
+    level: 1,
+    attack: 40,
+    defence: 10
+  }
+  
+  const magic = {
+    name: 'Маг',
+    type: 'Magician',
+    health: 50,
+    level: 1,
+    attack: 40,
+    defence: 10
+  }
+let t = new Team;
 
-export { fellowship, pack, aragorn, gandalf, legolas }
+let m = t.members;
+m.push(bow);
+m.push(magic);
+
+
+  function* teamGen() {
+    for (let i=0; i< m.length; i++) {
+    yield m[i]
+  }
+  };
+
+let b = teamGen()
+
+b.next()
+b.next()
+b.next()
+
