@@ -1,38 +1,72 @@
-import Team from './team'
-
-const bow = {
-    name: 'Лучник',
-    type: 'Bowman',
-    health: 50,
-    level: 1,
-    attack: 40,
-    defence: 10
+export default class Team {
+  constructor() {
+    this.members = [{
+      name: 'Стрелец',
+      type: 'Bowman',
+      health: 100,
+      level: 1,
+      attack: 25,
+      defence: 25,
+    },
+    {
+      name: 'Дружинник',
+      type: 'Swordsman',
+      health: 100,
+      level: 2,
+      attack: 40,
+      defence: 10,
+    },
+    {
+      name: 'Колдун',
+      type: 'Magician',
+      health: 90,
+      level: 1,
+      attack: 10,
+      defence: 40,
+    },
+    {
+      name: 'Мертвец',
+      type: 'Undead',
+      health: 50,
+      level: 3,
+      attack: 100,
+      defence: 80,
+    },
+    {
+      name: 'Упырь',
+      type: 'Zombie',
+      health: 20,
+      level: 1,
+      attack: 10,
+      defence: 10,
+    },
+    {
+      name: 'Бес',
+      type: 'Daemon',
+      health: 80,
+      level: 2,
+      attack: 80,
+      defence: 20,
+    }];
   }
-  
-  const magic = {
-    name: 'Маг',
-    type: 'Magician',
-    health: 50,
-    level: 1,
-    attack: 40,
-    defence: 10
+
+  [Symbol.iterator]() {
+    let current = 0;
+    const last = this.members.length;
+    const persons = this.members;
+    return {
+      next() {
+        if (current < last) {
+          current += 1;
+          return {
+            done: false,
+            value: persons[current],
+          };
+        }
+        return {
+          done: true,
+        };
+      },
+    };
   }
-let t = new Team;
-
-let m = t.members;
-m.push(bow);
-m.push(magic);
-
-
-  function* teamGen() {
-    for (let i=0; i< m.length; i++) {
-    yield m[i]
-  }
-  };
-
-let b = teamGen()
-
-b.next()
-b.next()
-b.next()
-
+}
